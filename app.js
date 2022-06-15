@@ -25,7 +25,29 @@ class School {
       `${this._name} educates ${this._numberOfStudents} students at the ${this._level}.`
     );
   }
-  static pickSubstituteTeacher() {
-    return Math.floor(Math.random() * this._numberOfStudents.length);
+  static pickSubstituteTeachers(substituteTeachers) {
+    return this.substituteTeachers[
+      Math.floor(Math.random() * substituteTeachers.length)
+    ];
+  }
+}
+
+class PrimarySchool extends School {
+  constructor(name, numberOfStudents, pickupPolicy) {
+    super(name, "primary", numberOfStudents);
+    this._pickupPolicy = pickupPolicy;
+  }
+  get pickupPolicy() {
+    return this._pickupPolicy;
+  }
+}
+
+class HighSchool extends School {
+  constructor(name, numberOfStudents, sportsTeams) {
+    super(name, "high", numberOfStudents);
+    this._sportsTeams = sportsTeams;
+  }
+  get sportsTeams() {
+    return this._sportsTeams;
   }
 }
