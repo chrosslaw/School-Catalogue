@@ -1,8 +1,8 @@
 class School {
-  constructor(name, level) {
+  constructor(name, level, numberOfStudents) {
     this._name = name;
     this._level = level;
-    this._numberOfStudents = 0;
+    this._numberOfStudents = numberOfStudents;
   }
   get name() {
     return this._name;
@@ -14,8 +14,18 @@ class School {
     return this._numberOfStudents;
   }
   set numberOfStudents(num) {
-    this._numberOfStudents = num;
+    if (typeof num === "number") {
+      this._numberOfStudents = num;
+    } else {
+      console.log("Invalid input: numberOfStudents must be a Number");
+    }
   }
-  quickFacts() {}
-  pickSubstituteTeacher() {}
+  quickFacts() {
+    console.log(
+      `${this._name} educates ${this._numberOfStudents} students at the ${this._level}.`
+    );
+  }
+  static pickSubstituteTeacher() {
+    return Math.floor(Math.random() * this._numberOfStudents.length);
+  }
 }
