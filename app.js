@@ -22,13 +22,12 @@ class School {
   }
   quickFacts() {
     console.log(
-      `${this._name} educates ${this._numberOfStudents} students at the ${this._level}.`
+      `${this._name} educates ${this._numberOfStudents} students at the ${this._level} school level.`
     );
   }
-  static pickSubstituteTeachers(substituteTeachers) {
-    return this.substituteTeachers[
-      Math.floor(Math.random() * substituteTeachers.length)
-    ];
+  static pickSubstituteTeacher(substituteTeachers) {
+    let randomNumber = Math.floor(Math.random() * substituteTeachers.length);
+    return `Substitute Teacher: ${substituteTeachers[randomNumber]}`;
   }
 }
 
@@ -41,6 +40,11 @@ class PrimarySchool extends School {
     return this._pickupPolicy;
   }
 }
+class MiddleSchool extends School {
+  constructor(name, numberOfStudents) {
+    super(name, "middle", numberOfStudents);
+  }
+}
 
 class HighSchool extends School {
   constructor(name, numberOfStudents, sportsTeams) {
@@ -51,3 +55,31 @@ class HighSchool extends School {
     return this._sportsTeams;
   }
 }
+
+//Primary School Test Cases
+const thomasJefferson = new PrimarySchool(
+  "Thomas Jefferson",
+  354,
+  "Students must be picked up by a parent, guardian, or a family member over the age of 13."
+);
+thomasJefferson.quickFacts();
+console.log(
+  School.pickSubstituteTeacher([
+    "Jamal Crawford",
+    "Lou Williams",
+    "J. R. Smith",
+    "James Harden",
+    "Jason Terry",
+    "Manu Ginobli",
+  ])
+);
+
+//High School Test Case
+const isaacNewton = new HighSchool("Isaac Newton", 260, [
+  "Baseball",
+  "Basketball",
+  "Volleyball",
+  "Track and Field",
+]);
+
+console.log(isaacNewton.sportsTeams);
